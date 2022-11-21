@@ -1,0 +1,30 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity halfAdder is
+    Port ( a,b : in  STD_LOGIC;
+           c,s : out  STD_LOGIC);
+           
+end halfAdder;
+
+architecture structural of halfAdder is
+
+component xor_gate is
+    Port( A,B: in STD_LOGIC;
+	       C: out STD_LOGIC);
+end component;
+
+component and_gate is
+    Port( A,B: in STD_LOGIC;
+	        C : out STD_LOGIC);
+end component;
+
+begin
+
+X1: xor_gate port map(A => a, B => b, C => s );
+A1: and_gate port map(A => a, B => b, C => c );
+
+end structural;
+

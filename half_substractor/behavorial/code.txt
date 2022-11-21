@@ -1,0 +1,29 @@
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity half_sub_beha is
+    Port ( a : in  STD_LOGIC;
+           b : in  STD_LOGIC;
+           diff : out  STD_LOGIC;
+           borrow : out  STD_LOGIC);
+end half_sub_beha;
+
+architecture Behavioral of half_sub_beha is
+
+begin
+process(a,b)
+begin
+if(a = '0') then
+borrow <= b;
+diff <= b;
+else
+borrow <= '0';
+diff <= not b;
+end if;
+end process;
+
+end Behavioral;
+

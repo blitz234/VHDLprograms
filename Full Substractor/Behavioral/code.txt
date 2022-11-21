@@ -1,0 +1,43 @@
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+
+entity fs_behavioral is
+    Port ( a : in  STD_LOGIC;
+           b : in  STD_LOGIC;
+           c : in  STD_LOGIC;
+           d : out  STD_LOGIC;
+           bc : out  STD_LOGIC);
+end fs_behavioral;
+
+architecture Behavioral of fs_behavioral is
+
+begin
+process(a,b,c)
+begin
+  if(( a = '0' and b = '0') and c = '1') 
+    or (( a = '0' and b = '1') and c = '0') 
+	or (( a = '1' and b = '0') and c = '0') 
+	or (( a = '1' and b = '1') and c = '1') then
+	d <= '1';
+  else
+  d <= '0';
+  end if;
+  end process;
+process (a,b,c)
+begin
+     if(( a = '0' and b = '0') and c = '1') 
+   or (( a = '0' and b = '1') and c = '0') 
+	or (( a = '0' and b = '1') and c = '1') 
+	or (( a = '1' and b = '1') and c = '1') then
+	bc <= '1';
+  else
+  bc <= '1';
+  end if;
+  end process;
+ 
+
+end Behavioral;

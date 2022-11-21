@@ -1,0 +1,28 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity half_sub_struct is
+    Port ( a : in  STD_LOGIC;
+           b : in  STD_LOGIC;
+           diff : out  STD_LOGIC;
+           borrow : out  STD_LOGIC);
+end half_sub_struct;
+
+architecture structural of half_sub_struct is
+component and_gate is
+   port( i1, i2 : in std_logic;
+	      o1 : out std_logic);
+end component;
+component xor_gate is
+   port( i1, i2 : in std_logic;
+	      o1 : out std_logic);
+end component;
+
+begin
+u1 : xor_gate port map( i1 => a, i2 => b, o1 => diff);
+u2 : and_gate port map( i1 => (not a), i2 => b, o1 => borrow);
+
+end structural;
+

@@ -1,0 +1,40 @@
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+
+entity fullAdderStruc is
+    Port ( a : in  STD_LOGIC;
+           b : in  STD_LOGIC;
+           cin : in  STD_LOGIC;
+           s : out  STD_LOGIC;
+           cout : out  STD_LOGIC);
+end fullAdderStruc;
+
+architecture structural of fullAdderStruc is
+
+component xor_gate is
+    Port( A,B: in STD_LOGIC;
+	       C: out STD_LOGIC);
+end component;
+component and_gate is
+    Port( A,B: in STD_LOGIC;
+	       C: out STD_LOGIC);
+end component;
+component or_gate is
+    Port( A,B,C: in STD_LOGIC;
+	       D: out STD_LOGIC);
+end component;
+signal xor1, and_1, and_2, and_3: STD_LOGIC;
+
+begin
+u1: xor_gate port map( A => a, B => b, C => xor1);
+u2 : xor_gate port map( A => xor1, B=> cin, C => s);
+u3: and_gate port map(A => a, B => b, C => and_1);
+u4: and_gate port map(A => a, B => cin, C => and_2);
+u5: and_gate port map(A => cin, B => b, C => and_3);
+u6: or_gate port map(A=> and_1, B=> and_2, C => and_3, D => cout);
+
+end structural;
